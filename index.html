@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eingliederungshilfe | Diakonie Michaelshoven</title>
+<style>
+:root {
+  --red: #C0001A;
+  --red-dark: #900013;
+  --black: #1A1A1A;
+  --grey-dark: #333;
+  --grey-mid: #666;
+  --grey-light: #E8E8E8;
+  --grey-bg: #F7F7F7;
+  --white: #fff;
+  --border: #DDD;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:72px; }
+body { font-family:Georgia, 'Times New Roman', serif; background:#fff; color:#1A1A1A; overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:sticky; top:0; z-index:100;
+  background:#fff; border-bottom:3px solid var(--red);
+  padding:0 40px; display:flex; align-items:stretch;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.nav-logo-wrap { display:flex; align-items:center; gap:12px; padding:16px 0; text-decoration:none; }
+.logo-icon { width:40px; height:40px; background:var(--red); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; font-weight:700; font-family:Georgia,'Times New Roman',serif; flex-shrink:0; }
+.logo-text strong { display:block; font-family:Georgia,'Times New Roman',serif; font-size:16px; font-weight:700; color:#1A1A1A; }
+.logo-text span { font-size:12px; color:#666; }
+.nav-links { display:flex; list-style:none; align-items:center; }
+.nav-links a { display:flex; align-items:center; padding:0 16px; font-size:14px; font-weight:500; color:#333; text-decoration:none; height:100%; border-bottom:3px solid transparent; margin-bottom:-3px; transition:color 0.2s, border-color 0.2s; }
+.nav-links a:hover { color:var(--red); border-bottom-color:var(--red); }
+.nav-cta { background:var(--red) !important; color:#fff !important; padding:10px 22px !important; border-radius:2px; border-bottom:none !important; margin:12px 0 12px 12px; height:auto !important; font-weight:600 !important; transition:background 0.2s !important; }
+.nav-cta:hover { background:var(--red-dark) !important; border-bottom:none !important; }
+
+/* HERO */
+.hero { background:var(--red); min-height:420px; display:flex; align-items:center; position:relative; overflow:hidden; border-bottom:none; }
+.hero-left { padding:70px 60px 70px 40px; max-width:680px; position:relative; z-index:2; }
+.hero-right { position:absolute; right:0; top:0; bottom:0; width:44%; clip-path:polygon(10% 0,100% 0,100% 100%,0% 100%); overflow:hidden; background:#1A1A1A; }
+.hero-right-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 70% 40%, #C0001A 0%, #7a000f 50%, #111 100%); }
+.hero-right-circles { position:absolute; inset:0; }
+.hero-right-circles span { position:absolute; border-radius:50%; border:2px solid rgba(255,255,255,0.12); }
+.hero-right-circles span:nth-child(1) { width:320px; height:320px; top:50%; left:50%; transform:translate(-50%,-50%); }
+.hero-right-circles span:nth-child(2) { width:220px; height:220px; top:50%; left:50%; transform:translate(-50%,-50%); border-color:rgba(255,255,255,0.18); }
+.hero-right-circles span:nth-child(3) { width:120px; height:120px; top:50%; left:50%; transform:translate(-50%,-50%); border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.05); }
+.hero-right-content { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; z-index:2; }
+.logo-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
+.logo-placeholder-icon { font-size:100px; color:rgba(255,255,255,0.15); line-height:1; }
+.logo-placeholder-text { color:rgba(255,255,255,0.4); font-size:13px; font-weight:500; letter-spacing:2px; text-transform:uppercase; border:1px dashed rgba(255,255,255,0.25); padding:8px 18px; border-radius:4px; }
+.hero-tag { display:inline-block; background:#fff; color:var(--red); font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:5px 14px; border-radius:2px; margin-bottom:18px; }
+h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(30px,4.5vw,52px); font-weight:700; color:#fff; line-height:1.15; margin-bottom:18px; }
+.hero-sub { font-size:17px; color:rgba(255,255,255,0.82); max-width:520px; line-height:1.7; font-weight:300; margin-bottom:32px; }
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+.btn-red { background:#fff; color:var(--red); padding:14px 32px; text-decoration:none; font-weight:600; font-size:15px; border-radius:2px; transition:background 0.2s, transform 0.15s; display:inline-block; }
+.btn-red:hover { background:var(--red-dark); transform:translateY(-2px); }
+.btn-outline { background:transparent; color:#fff; padding:12px 28px; border:2px solid rgba(255,255,255,0.6); text-decoration:none; font-weight:600; font-size:15px; border-radius:2px; transition:all 0.2s; display:inline-block; }
+.btn-outline:hover { background:#fff; color:var(--red); }
+
+/* STATS */
+.stats-bar { background:#1A1A1A; padding:32px 40px; display:grid; grid-template-columns:repeat(4,1fr); }
+.stat-item { text-align:center; border-right:1px solid rgba(255,255,255,0.25); padding:8px 10px 8px; transition:transform 0.25s; }
+.stat-item:hover { transform:scale(1.06); }
+.stat-item:last-child { border-right:none; }
+.stat-num { display:block; font-family:Georgia,'Times New Roman',serif; font-size:34px; font-weight:700; color:#fff; line-height:1.2; margin-bottom:8px; }
+.stat-label { font-size:13px; color:rgba(255,255,255,0.8); line-height:1.4; }
+
+/* SECTIONS */
+.section { padding:64px 40px; }
+#about { background:#FFF5F5; }
+.section-label { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+h2 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(26px,3.5vw,40px); color:#1A1A1A; line-height:1.2; margin-bottom:14px; }
+.section-intro { font-size:17px; color:#666; max-width:580px; line-height:1.7; font-weight:300; }
+
+/* LEISTUNGEN */
+.leistungen-wrap { background:#F0F0F0; }
+.leistungen-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px; flex-wrap:wrap; gap:16px; }
+.cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border:1px solid var(--border); }
+.card { background:#fff; padding:32px 28px; transition:border-left-color 0.3s, transform 0.3s, box-shadow 0.3s; border-left:4px solid transparent; }
+.card:hover { border-left-color:var(--red); transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.1); }
+.card-icon { width:48px; height:48px; background:var(--grey-bg); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; transition:background 0.2s; }
+.card:hover .card-icon { background:#fce8eb; }
+.card h3 { font-family:Georgia,'Times New Roman',serif; font-size:17px; color:#1A1A1A; margin-bottom:8px; font-weight:600; }
+.card p { font-size:14px; color:#666; line-height:1.65; margin-bottom:16px; }
+.card-link { font-size:13px; font-weight:600; color:var(--red); text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:gap 0.2s; }
+.card-link:hover { gap:9px; }
+.card-link::after { content:'→'; }
+
+/* ÜBER UNS */
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+.about-box { width:100%; aspect-ratio:4/3; border-radius:8px; position:relative; overflow:visible; }
+.about-box-inner { width:100%; height:100%; border-radius:8px; overflow:hidden; position:relative; background:#1A1A1A; display:flex; align-items:center; justify-content:center; cursor:crosshair; }
+.about-box-inner::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at var(--mx, 25%) var(--my, 60%), #C0001A 0%, #7a000f 50%, #1A1A1A 100%); }
+.about-box-inner::after { content:''; position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px); background-size:30px 30px; }
+.about-box-emoji { position:relative; z-index:2; font-size:90px; opacity:0.18; transition:transform 0.15s ease, opacity 0.15s ease; }
+.about-stat { position:absolute; bottom:-16px; right:-16px; background:#fff; border-left:4px solid var(--red); color:var(--red); padding:18px 22px; border-radius:4px; text-align:center; box-shadow:0 8px 28px rgba(0,0,0,0.18); transition:transform 0.3s, box-shadow 0.3s; z-index:3; }
+.about-stat:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.22); }
+.about-stat .big { display:block; font-family:Georgia,'Times New Roman',serif; font-size:42px; font-weight:700; line-height:1; margin-bottom:4px; }
+.about-stat .sub { font-size:12px; color:#666; line-height:1.4; }
+.values-list { list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:0; }
+.values-list li { display:flex; gap:12px; font-size:15px; color:#333; line-height:1.6; padding:14px 0; border-bottom:1px solid var(--grey-light); }
+.values-list li:last-child { border-bottom:none; }
+.check { width:22px; height:22px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff; font-size:11px; font-weight:700; margin-top:2px; }
+
+/* ZIELGRUPPEN */
+.zg-wrap { background:var(--red); }
+.zg-wrap .section-label { color:rgba(255,255,255,0.7); }
+.zg-wrap h2 { color:#fff; }
+.zg-wrap .section-intro { color:rgba(255,255,255,0.75); }
+.zg-header { margin-bottom:40px; }
+.zg-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.15); }
+.zg-card { background:rgba(255,255,255,0.08); padding:28px 22px; transition:background 0.25s, transform 0.25s; border-left:3px solid transparent; cursor:pointer; }
+.zg-card:hover { background:rgba(255,255,255,0.18); transform:translateY(-4px); border-left-color:rgba(255,255,255,0.6); }
+.zg-emoji { font-size:34px; display:block; margin-bottom:14px; }
+.zg-card h3 { font-family:Georgia,'Times New Roman',serif; font-size:15px; color:#fff; margin-bottom:8px; font-weight:600; }
+.zg-card p { font-size:13px; color:rgba(255,255,255,0.72); line-height:1.6; }
+
+/* CTA */
+.cta-section { background:#1A1A1A; padding:64px 40px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
+.cta-section h2 { color:#fff; font-size:clamp(24px,3vw,36px); margin-bottom:8px; }
+.cta-section p { color:rgba(255,255,255,0.65); font-size:16px; font-weight:300; }
+.btn-white { background:#fff; color:var(--red); padding:14px 36px; text-decoration:none; font-weight:700; font-size:15px; border-radius:2px; white-space:nowrap; transition:all 0.2s; display:inline-block; }
+.btn-white:hover { background:var(--grey-light); transform:translateY(-2px); }
+
+/* FOOTER */
+footer { background:#1A1A1A; padding:52px 40px 28px; }
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:52px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:28px; }
+.footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.footer-logo .logo-icon { width:34px; height:34px; font-size:17px; }
+.footer-logo strong { font-family:Georgia,'Times New Roman',serif; font-size:15px; color:#fff; font-weight:700; }
+.footer-desc { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.7; max-width:230px; }
+.footer-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,0.35); margin-bottom:16px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.footer-col ul a { text-decoration:none; font-size:13px; color:rgba(255,255,255,0.6); transition:color 0.2s; }
+.footer-col ul a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.footer-bottom p, .footer-bottom a { font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none; }
+.footer-bottom a:hover { color:#fff; }
+.footer-links { display:flex; gap:16px; }
+
+/* REVEAL ANIMATIONEN */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* RESPONSIVE */
+/* ── DESKTOP (1200px+) ── */
+@media(min-width:1200px) {
+  nav { padding:0 80px; }
+  .section { padding:80px 80px; }
+  .hero-left { padding:90px 80px; max-width:760px; }
+  .stats-bar { padding:28px 80px; }
+  .cards-grid { grid-template-columns:repeat(3,1fr); }
+  .footer-top { padding-bottom:48px; }
+  footer { padding:60px 80px 32px; }
+  .cta-section { padding:80px 80px; }
+  h1 { font-size:58px; }
+  .hero-sub { font-size:19px; }
+}
+
+/* ── TABLET (900–1199px) ── */
+@media(min-width:900px) and (max-width:1199px) {
+  nav { padding:0 32px; }
+  .section { padding:64px 32px; }
+  .hero-left { padding:70px 32px; }
+  .stats-bar { padding:24px 32px; }
+  .cards-grid { grid-template-columns:repeat(3,1fr); }
+  footer { padding:48px 32px 28px; }
+  .cta-section { padding:60px 32px; }
+}
+
+/* ── MOBIL (unter 900px) ── */
+@media(max-width:899px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .section { padding:48px 20px; }
+  .hero-left { padding:52px 20px; }
+  .hero-right { display:none; }
+  .stats-bar { grid-template-columns:1fr 1fr; padding:20px; }
+  .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:12px; }
+  .cards-grid { grid-template-columns:1fr; }
+  .zg-grid { grid-template-columns:1fr 1fr; }
+  .about-grid { grid-template-columns:1fr; gap:48px; }
+  .about-stat { right:0; }
+  .cta-section { grid-template-columns:1fr; padding:48px 20px; }
+  .footer-top { grid-template-columns:1fr 1fr; gap:28px; }
+  footer { padding:40px 20px 24px; }
+  .btn-red, .btn-outline, .btn-white { padding:12px 24px; font-size:14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo-wrap" href="https://www.diakonie-michaelshoven.de" target="_blank" rel="noopener">
+    <div class="logo-icon">D</div>
+    <div class="logo-text">
+      <strong>Diakonie Michaelshoven</strong>
+      <span>Eingliederungshilfe Köln &amp; Region</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#zielgruppen">Zielgruppen</a></li>
+    <li><a href="https://www.diakonie-michaelshoven.de/karriere/offene-stellen" target="_blank" rel="noopener" class="nav-cta">Jetzt bewerben</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Eingliederungshilfe</div>
+    <h1>Arbeiten bei der Eingliederungshilfe Diakonie Michaelshoven</h1>
+    <p class="hero-sub">Wir begleiten Menschen mit Beeinträchtigungen auf ihrem Weg zur gesellschaftlichen Teilhabe – individuell, wertschätzend und verlässlich.</p>
+    <div class="hero-btns">
+      <a href="https://www.diakonie-michaelshoven.de/karriere/offene-stellen" target="_blank" rel="noopener" class="btn-red">Jetzt bewerben</a>
+      <a href="#leistungen" class="btn-outline">Unsere Angebote</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-right-circles">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="hero-right-content">
+      <div class="logo-placeholder">
+        <div class="logo-placeholder-icon">✝</div>
+        <div class="logo-placeholder-text">[ Diakonie Logo ]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Betreute Personen</span></div>
+  <div class="stat-item"><span class="stat-num">75+</span><span class="stat-label">Jahre Erfahrung</span></div>
+  <div class="stat-item"><span class="stat-num">200+</span><span class="stat-label">Einrichtungen</span></div>
+  <div class="stat-item"><span class="stat-num">3.000</span><span class="stat-label">Mitarbeitende</span></div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="section leistungen-wrap" id="leistungen">
+  <div class="leistungen-header reveal">
+    <div>
+      <div class="section-label">Was wir anbieten</div>
+      <h2>Unsere Leistungen auf einen Blick</h2>
+    </div>
+    <p class="section-intro" style="max-width:340px;">Abgestimmt auf Ihre Bedürfnisse – von der Beratung bis zur dauerhaften Begleitung.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card reveal">
+      <div class="card-icon">🏠</div>
+      <h3>Ambulant Betreutes Wohnen</h3>
+      <p>Unterstützung in den eigenen vier Wänden – wir begleiten Sie auf dem Weg zu einem selbstständigen Leben.</p>
+      <a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/ambulant-betreutes-wohnen" target="_blank" rel="noopener" class="card-link">Mehr erfahren</a>
+    </div>
+    <div class="card reveal" style="transition-delay:0.08s">
+      <div class="card-icon">🏘️</div>
+      <h3>Wohngemeinschaften</h3>
+      <p>Leben in einer unserer Wohngemeinschaften – mit Betreuung, Gemeinschaft und einem Zuhause.</p>
+      <a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/wohngruppen" target="_blank" rel="noopener" class="card-link">Mehr erfahren</a>
+    </div>
+    <div class="card reveal" style="transition-delay:0.16s">
+      <div class="card-icon">📋</div>
+      <h3>Ambulante Eingliederungshilfe</h3>
+      <p>Individuelle Unterstützung zur gesellschaftlichen Teilhabe – angepasst an Ihre Ziele und Bedürfnisse.</p>
+      <a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/ambulante-eingliederungshilfe" target="_blank" rel="noopener" class="card-link">Mehr erfahren</a>
+    </div>
+    <div class="card reveal" style="transition-delay:0.08s">
+      <div class="card-icon">🌱</div>
+      <h3>Selbstständig leben</h3>
+      <p>Wir unterstützen Sie dabei, ein eigenständiges Leben zu führen – so viel Freiheit wie möglich.</p>
+      <a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/selbststaendig-leben" target="_blank" rel="noopener" class="card-link">Mehr erfahren</a>
+    </div>
+    <div class="card reveal" style="transition-delay:0.16s">
+      <div class="card-icon">👨‍👩‍👧</div>
+      <h3>Begleitete Elternschaft</h3>
+      <p>Unterstützung für Eltern mit Beeinträchtigung – damit Familie gelingen kann.</p>
+      <a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/begleitete-elternschaft" target="_blank" rel="noopener" class="card-link">Mehr erfahren</a>
+    </div>
+    <div class="card reveal" style="transition-delay:0.24s">
+      <div class="card-icon">🎭</div>
+      <h3>Freizeit, Bildung und Tagesgestaltung</h3>
+      <p>Sport, Kultur und Gemeinschaft – für ein aktives Leben mit Freude und sinnvoller Tagesstruktur.</p>
+      <a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/freizeit-bildung-und-tagesgestaltung" target="_blank" rel="noopener" class="card-link">Mehr erfahren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-box reveal">
+      <div class="about-box-inner">
+        <span class="about-box-emoji">🤝</span>
+      </div>
+      <div class="about-stat">
+        <span class="big">75+</span>
+        <span class="sub">Jahre soziale<br>Arbeit in Köln</span>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="section-label">Wer wir sind</div>
+      <h2>Menschen begleiten,<br>Stärken entfalten</h2>
+      <p class="section-intro">Wir sind ein erfahrenes Team aus Sozialpädagoginnen, Pädagogen und Fachkräften, das sich für die Rechte und Bedürfnisse von Menschen mit Beeinträchtigungen einsetzt.</p>
+      <ul class="values-list">
+        <li><div class="check">✓</div><span><strong>Personenzentriert:</strong> Ihre Ziele stehen im Mittelpunkt.</span></li>
+        <li><div class="check">✓</div><span><strong>Auf Augenhöhe:</strong> Wir arbeiten partnerschaftlich.</span></li>
+        <li><div class="check">✓</div><span><strong>Vernetzt:</strong> Enger Austausch mit Behörden und Ärzten.</span></li>
+        <li><div class="check">✓</div><span><strong>Transparent:</strong> Offene Kommunikation über Leistungen und Kosten.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ZIELGRUPPEN -->
+<section class="section zg-wrap" id="zielgruppen">
+  <div class="zg-header reveal">
+    <div class="section-label">Für wen wir da sind</div>
+    <h2>Unsere Zielgruppen</h2>
+    <p class="section-intro">Individuell zugeschnittene Unterstützung für Menschen unterschiedlicher Bedarfsgruppen.</p>
+  </div>
+  <div class="zg-grid">
+    <div class="zg-card reveal" onclick="window.open('https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene','_blank')">
+      <span class="zg-emoji">🧠</span>
+      <h3>Geistige Behinderung</h3>
+      <p>Unterstützung im Alltag, bei der Arbeit und in der Freizeit.</p>
+    </div>
+    <div class="zg-card reveal" style="transition-delay:0.1s" onclick="window.open('https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/ambulant-betreutes-wohnen','_blank')">
+      <span class="zg-emoji">♿</span>
+      <h3>Körperliche Beeinträchtigung</h3>
+      <p>Persönliche Assistenz und Begleitung für Menschen mit körperlichen Einschränkungen.</p>
+    </div>
+    <div class="zg-card reveal" style="transition-delay:0.2s" onclick="window.open('https://www.diakonie-michaelshoven.de/angebote/menschen-in-krisen/psychische-erkrankung','_blank')">
+      <span class="zg-emoji">💬</span>
+      <h3>Seelische Erkrankung</h3>
+      <p>Begleitung und Stabilisierung für Menschen mit psychischen Erkrankungen.</p>
+    </div>
+    <div class="zg-card reveal" style="transition-delay:0.3s" onclick="window.open('https://www.diakonie-michaelshoven.de/angebote/kinder-jugendliche-und-familien/kinder-und-jugendhilfe/autismus','_blank')">
+      <span class="zg-emoji">🎯</span>
+      <h3>Autismus-Spektrum</h3>
+      <p>Spezialisierte Begleitung zugeschnitten auf besondere Bedürfnisse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section reveal">
+  <div>
+    <h2>Jetzt Teil unseres Teams werden</h2>
+    <p>Wir suchen engagierte Fachkräfte für die Eingliederungshilfe. Arbeiten mit Sinn – in Köln und der Region.</p>
+  </div>
+  <a href="https://www.diakonie-michaelshoven.de/karriere/offene-stellen" target="_blank" rel="noopener" class="btn-white">Jetzt bewerben →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">
+        <div class="logo-icon">D</div>
+        <strong>Diakonie Michaelshoven</strong>
+      </div>
+      <p class="footer-desc">Gemeinsam für ein selbstbestimmtes Leben. Seit über 75 Jahren soziale Arbeit in Köln und der Region.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/ambulant-betreutes-wohnen" target="_blank">Betreutes Wohnen</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/wohngruppen" target="_blank">Wohngemeinschaften</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/ambulante-eingliederungshilfe" target="_blank">Eingliederungshilfe</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung/hilfen-fuer-erwachsene/freizeit-bildung-und-tagesgestaltung" target="_blank">Freizeit &amp; Bildung</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Zielgruppen</h4>
+      <ul>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung" target="_blank">Geistige Behinderung</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-mit-beeintraechtigung" target="_blank">Körperliche Beeinträchtigung</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/menschen-in-krisen/psychische-erkrankung" target="_blank">Seelische Erkrankung</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/angebote/kinder-jugendliche-und-familien/kinder-und-jugendhilfe/autismus" target="_blank">Autismus-Spektrum</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Organisation</h4>
+      <ul>
+        <li><a href="https://www.diakonie-michaelshoven.de/ueber-uns" target="_blank">Über uns</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/karriere" target="_blank">Karriere</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/online-spende" target="_blank">Spenden</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/impressum" target="_blank">Impressum</a></li>
+        <li><a href="https://www.diakonie-michaelshoven.de/datenschutzerklaerung" target="_blank">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Diakonie Michaelshoven e.V. | Pfarrer-te-Reh-Str. 15, 50999 Köln</p>
+    <div class="footer-links">
+      <a href="https://www.diakonie-michaelshoven.de/impressum" target="_blank">Impressum</a>
+      <a href="https://www.diakonie-michaelshoven.de/datenschutzerklaerung" target="_blank">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold:0.1 });
+  reveals.forEach(el => observer.observe(el));
+  // ── Maus-Tracking für About-Box ──
+  const aboutBox = document.querySelector('.about-box-inner');
+  if (aboutBox) {
+    aboutBox.addEventListener('mousemove', (e) => {
+      const rect = aboutBox.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      aboutBox.style.setProperty('--mx', x + '%');
+      aboutBox.style.setProperty('--my', y + '%');
+      const emoji = aboutBox.querySelector('.about-box-emoji');
+      if (emoji) {
+        const dx = (x - 50) / 50;
+        const dy = (y - 50) / 50;
+        emoji.style.transform = `translate(${dx * 18}px, ${dy * 18}px) scale(1.12)`;
+        emoji.style.opacity = '0.32';
+      }
+    });
+    aboutBox.addEventListener('mouseleave', () => {
+      const emoji = aboutBox.querySelector('.about-box-emoji');
+      if (emoji) {
+        emoji.style.transform = 'translate(0,0) scale(1)';
+        emoji.style.opacity = '0.18';
+      }
+      aboutBox.style.removeProperty('--mx');
+      aboutBox.style.removeProperty('--my');
+    });
+  }
+
+  // ── 3D Tilt für Karten ──
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rotY = ((x - cx) / cx) * 6;
+      const rotX = -((y - cy) / cy) * 4;
+      card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // ── Maus-Glow für Hero-Right ──
+  const heroRight = document.querySelector('.hero-right');
+  if (heroRight) {
+    heroRight.addEventListener('mousemove', (e) => {
+      const rect = heroRight.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      const bg = heroRight.querySelector('.hero-right-bg');
+      if (bg) bg.style.background = `radial-gradient(ellipse at ${x}% ${y}%, #C0001A 0%, #7a000f 45%, #111 100%)`;
+    });
+    heroRight.addEventListener('mouseleave', () => {
+      const bg = heroRight.querySelector('.hero-right-bg');
+      if (bg) bg.style.background = '';
+    });
+  }
+
+  // ── Stat-Karten Parallax ──
+  document.querySelectorAll('.hero-stat-card').forEach((card, i) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width/2) / rect.width;
+      const y = (e.clientY - rect.top - rect.height/2) / rect.height;
+      const base = i === 1 ? 'translateX(24px) ' : '';
+      card.style.transform = `${base}translateY(-6px) rotateX(${-y*8}deg) rotateY(${x*8}deg)`;
+      card.style.perspective = '400px';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = i === 1 ? 'translateX(24px)' : '';
+    });
+  });
+</script>
+</body>
+</html>
