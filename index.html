@@ -49,9 +49,27 @@ nav {
 .hero-right-circles span:nth-child(2) { width:220px; height:220px; top:50%; left:50%; transform:translate(-50%,-50%); border-color:rgba(255,255,255,0.18); }
 .hero-right-circles span:nth-child(3) { width:120px; height:120px; top:50%; left:50%; transform:translate(-50%,-50%); border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.05); }
 .hero-right-content { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; z-index:2; }
-.logo-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
-.logo-placeholder-icon { font-size:100px; color:rgba(255,255,255,0.15); line-height:1; }
-.logo-placeholder-text { color:rgba(255,255,255,0.4); font-size:13px; font-weight:500; letter-spacing:2px; text-transform:uppercase; border:1px dashed rgba(255,255,255,0.25); padding:8px 18px; border-radius:4px; }
+/* PRELOADER */
+#preloader { position:fixed; inset:0; background:#1A1A1A; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; opacity:0; visibility:hidden; transition:opacity 0.6s ease, visibility 0.6s ease; }
+#preloader.show { opacity:1; visibility:visible; }
+#preloader.hide { opacity:0; visibility:hidden; }
+.preloader-emoji { font-size:64px; animation:bounce 0.6s ease infinite alternate; }
+.preloader-msg { font-size:16px; color:#fff; font-weight:500; letter-spacing:0.5px; min-height:24px; text-align:center; }
+.preloader-sub { font-size:12px; color:rgba(255,255,255,0.35); letter-spacing:2px; text-transform:uppercase; }
+.preloader-dots { display:flex; gap:8px; }
+.preloader-dots span { width:10px; height:10px; background:var(--red); border-radius:50%; animation:dot 1s ease infinite; }
+.preloader-dots span:nth-child(2) { animation-delay:0.2s; }
+.preloader-dots span:nth-child(3) { animation-delay:0.4s; }
+@keyframes bounce { from{transform:translateY(0) rotate(-5deg)} to{transform:translateY(-16px) rotate(5deg)} }
+@keyframes dot { 0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)} }
+
+/* MAPS */
+.hero-map { width:100%; height:100%; border:none; filter:saturate(0.6) contrast(1.1); }
+
+/* PHONE */
+.cta-phone { margin-top:12px; font-size:14px; color:rgba(255,255,255,0.6); }
+.cta-phone a { color:rgba(255,255,255,0.9); text-decoration:none; font-weight:600; transition:color 0.2s; }
+.cta-phone a:hover { color:#fff; }
 .hero-tag { display:inline-block; background:#fff; color:var(--red); font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:5px 14px; border-radius:2px; margin-bottom:18px; }
 h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(30px,4.5vw,52px); font-weight:700; color:#fff; line-height:1.15; margin-bottom:18px; }
 .hero-sub { font-size:17px; color:rgba(255,255,255,0.82); max-width:520px; line-height:1.7; font-weight:300; margin-bottom:32px; }
@@ -194,6 +212,14 @@ footer { background:#1A1A1A; padding:52px 40px 28px; }
 </head>
 <body>
 
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-emoji">🤝</div>
+  <div class="preloader-msg" id="preloader-msg">Einen Moment bitte...</div>
+  <div class="preloader-dots"><span></span><span></span><span></span></div>
+  <div class="preloader-sub">Diakonie Michaelshoven</div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo-wrap" href="https://www.diakonie-michaelshoven.de" target="_blank" rel="noopener">
@@ -227,11 +253,8 @@ footer { background:#1A1A1A; padding:52px 40px 28px; }
     <div class="hero-right-circles">
       <span></span><span></span><span></span>
     </div>
-    <div class="hero-right-content">
-      <div class="logo-placeholder">
-        <div class="logo-placeholder-icon">✝</div>
-        <div class="logo-placeholder-text">[ Diakonie Logo ]</div>
-      </div>
+    <div class="hero-right-content" style="padding:0;">
+      <iframe class="hero-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2515.3!2d6.9779!3d50.8827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf25a5b3c0f1f1%3A0x1!2sPfarrer-te-Reh-Str.+15%2C+50999+K%C3%B6ln!5e0!3m2!1sde!2sde!4v1" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -355,6 +378,7 @@ footer { background:#1A1A1A; padding:52px 40px 28px; }
   <div>
     <h2>Jetzt Teil unseres Teams werden</h2>
     <p>Wir suchen engagierte Fachkräfte für die Eingliederungshilfe. Arbeiten mit Sinn – in Köln und der Region.</p>
+    <p class="cta-phone">📞 <a href="tel:+4922199561000">0221 / 995 6-1000</a></p>
   </div>
   <a href="https://www.diakonie-michaelshoven.de/karriere/offene-stellen" target="_blank" rel="noopener" class="btn-white">Jetzt bewerben →</a>
 </div>
@@ -413,7 +437,42 @@ footer { background:#1A1A1A; padding:52px 40px 28px; }
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold:0.1 });
   reveals.forEach(el => observer.observe(el));
-  // ── Maus-Tracking für About-Box ──
+  // ── Scroll to top on load ──
+  history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  // ── Preloader – nur wenn wirklich was lädt ──
+  const messages = [
+    "Einen Moment bitte... ☕",
+    "Wir helfen gleich weiter! 🤝",
+    "Fast da... nur noch kurz! 🏃",
+    "Gute Dinge brauchen Zeit 😄",
+    "Köln wartet schon auf Sie! 🏙️"
+  ];
+  let msgIndex = 0;
+  let preloaderTimer = setTimeout(() => {
+    document.getElementById('preloader').classList.add('show');
+    const msgInterval = setInterval(() => {
+      msgIndex = (msgIndex + 1) % messages.length;
+      const el = document.getElementById('preloader-msg');
+      if (el) el.textContent = messages[msgIndex];
+    }, 1800);
+    window.addEventListener('load', () => {
+      clearInterval(msgInterval);
+      setTimeout(() => {
+        document.getElementById('preloader').classList.remove('show');
+        document.getElementById('preloader').classList.add('hide');
+      }, 400);
+    });
+  }, 300);
+
+  window.addEventListener('load', () => {
+    clearTimeout(preloaderTimer);
+    const p = document.getElementById('preloader');
+    if (p.classList.contains('show')) {
+      setTimeout(() => { p.classList.remove('show'); p.classList.add('hide'); }, 400);
+    }
+  });
   const aboutBox = document.querySelector('.about-box-inner');
   if (aboutBox) {
     aboutBox.addEventListener('mousemove', (e) => {
